@@ -1,0 +1,665 @@
+/* 詳盡檢查清單樣式 */
+
+.detailed-checklist-container {
+    padding: 16px;
+    max-width: 100%;
+}
+
+.detailed-checklist-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.detailed-checklist-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.detailed-checklist-title i {
+    color: #28a745;
+    font-size: 1.8rem;
+}
+
+.detailed-checklist-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* 進度顯示 */
+.checklist-progress {
+    margin-bottom: 24px;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #f0f2f5;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4cc9f0, #28a745);
+    border-radius: 6px;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#progressPercentage {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+#progressCount {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* 分類導航 */
+.checklist-category-nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 12px 0;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.checklist-category-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.category-checklist-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    min-width: 80px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.category-checklist-btn.active {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: white;
+}
+
+.category-checklist-btn:hover:not(.active) {
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.category-checklist-icon {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.category-checklist-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* 分類內容 */
+.category-checklist-content {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.category-checklist-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.category-checklist-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 8px;
+}
+
+.category-checklist-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* 檢查項目列表 */
+.checklist-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.checklist-item {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 12px 16px; /* 減少上下padding，保持左右padding */
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+    overflow: hidden; /* 防止內容溢出 */
+}
+
+.checklist-item:hover {
+    background: #f0f2f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.checklist-item.checked {
+    background: #f0fff4;
+    border-left-color: #28a745;
+}
+
+.item-critical {
+    border-left-color: #dc3545;
+    background: #fff5f5;
+}
+
+.item-high {
+    border-left-color: #fd7e14;
+    background: #fff9f0;
+}
+
+.item-medium {
+    border-left-color: #ffc107;
+    background: #fffdf0;
+}
+
+.item-low {
+    border-left-color: #28a745;
+    background: #f0fff4;
+}
+
+.checklist-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+/* 複選框樣式 */
+.checklist-checkbox {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.checklist-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checklist-checkbox label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.checklist-checkbox label:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 6px;
+    border: 2px solid white;
+    border-top: none;
+    border-right: none;
+    transform: translate(-50%, -60%) rotate(-45deg);
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.checklist-checkbox input[type="checkbox"]:checked + label {
+    background: #28a745;
+    border-color: #28a745;
+}
+
+.checklist-checkbox input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+}
+
+.checklist-checkbox input[type="checkbox"]:focus + label {
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+
+.checklist-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 12px;
+    flex: 1;
+    min-width: 0; /* 重要：允許文字縮小 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.checklist-details-toggle {
+    background: transparent;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.checklist-details-toggle:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--primary-blue);
+}
+
+/* 檢查項目詳細內容 */
+.checklist-item-details {
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.checklist-importance {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+    flex-wrap: wrap;
+}
+
+.importance-label {
+    font-weight: 600;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.importance-value {
+    font-weight: 700;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.item-critical .importance-value {
+    color: #dc3545;
+}
+
+.item-high .importance-value {
+    color: #fd7e14;
+}
+
+.item-medium .importance-value {
+    color: #ffc107;
+}
+
+.item-low .importance-value {
+    color: #28a745;
+}
+
+.deadline, .time {
+    font-size: 0.85rem;
+    color: #666;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.checklist-details-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.checklist-details-list li {
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    color: #555;
+    line-height: 1.5;
+    word-wrap: break-word; /* 允許文字換行 */
+    overflow-wrap: break-word; /* 現代瀏覽器支援 */
+    max-width: 100%; /* 確保不超出容器 */
+}
+
+.checklist-details-list li:before {
+    content: "•";
+    color: var(--primary-blue);
+    font-weight: bold;
+    position: absolute;
+    left: 8px;
+    font-size: 1.2rem;
+}
+
+/* 分類摘要 */
+.category-checklist-summary {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 2px solid #f0f0f0;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.summary-item i {
+    color: var(--primary-blue);
+    font-size: 1rem;
+}
+
+.summary-item span {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* 快速操作 */
+.checklist-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.checklist-quick-actions .btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+/* 統計資訊 */
+.checklist-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.stat-item i {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* 載中狀態 */
+.checklist-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: #666;
+    gap: 16px;
+}
+
+.checklist-loading i {
+    font-size: 2rem;
+    color: var(--primary-blue);
+}
+
+/* 錯誤狀態 */
+.checklist-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    gap: 16px;
+}
+
+.checklist-error i {
+    font-size: 3rem;
+    color: #dc3545;
+}
+
+.checklist-error h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.checklist-error p {
+    color: #666;
+    margin: 0;
+}
+
+/* 訊息提示 */
+.checklist-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10000;
+    animation: slideInUp 0.3s ease;
+}
+
+.checklist-message.success {
+    border-left: 4px solid #28a745;
+}
+
+.checklist-message.error {
+    border-left: 4px solid #dc3545;
+}
+
+.checklist-message.info {
+    border-left: 4px solid #17a2b8;
+}
+
+.checklist-message i {
+    font-size: 1.2rem;
+}
+
+.checklist-message.success i {
+    color: #28a745;
+}
+
+.checklist-message.error i {
+    color: #dc3545;
+}
+
+.checklist-message.info i {
+    color: #17a2b8;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .detailed-checklist-container {
+        padding: 12px;
+    }
+    
+    .detailed-checklist-title {
+        font-size: 1.3rem;
+    }
+    
+    .category-checklist-content {
+        padding: 16px;
+    }
+    
+    .category-checklist-title {
+        font-size: 1.2rem;
+    }
+    
+    .checklist-item-title {
+        font-size: 1rem;
+    }
+    
+    .checklist-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .checklist-quick-actions {
+        flex-direction: column;
+    }
+    
+    .checklist-quick-actions .btn {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .checklist-category-nav {
+        gap: 6px;
+    }
+    
+    .category-checklist-btn {
+        padding: 10px 12px;
+        min-width: 70px;
+    }
+    
+    .category-checklist-icon {
+        font-size: 1rem;
+    }
+    
+    .category-checklist-text {
+        font-size: 0.75rem;
+    }
+    
+    .checklist-item {
+        padding: 12px;
+    }
+    
+    .checklist-item-title {
+        font-size: 0.95rem;
+    }
+    
+    .checklist-details-list li {
+        font-size: 0.9rem;
+    }
+    
+    .category-checklist-summary {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* 觸摸優化 */
+.category-checklist-btn,
+.checklist-details-toggle,
+.checklist-checkbox label,
+.checklist-quick-actions .btn {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.checklist-item {
+    min-height: 44px;
+}
+
+/* 打印樣式 */
+@media print {
+    .checklist-category-nav,
+    .checklist-quick-actions,
+    .checklist-stats,
+    .checklist-details-toggle {
+        display: none;
+    }
+    
+    .checklist-item-details {
+        display: block !important;
+    }
+    
+    .checklist-item {
+        break-inside: avoid;
+        border: 1px solid #ddd;
+    }
+    
+    .checklist-checkbox input[type="checkbox"]:checked + label {
+        background: #333;
+    }
+}

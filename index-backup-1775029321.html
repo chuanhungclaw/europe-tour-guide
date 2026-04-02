@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗺️ 歐洲隨身導遊 - 手機優先設計</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/mobile-first.css">
+    <link rel="stylesheet" href="css/detailed-tips.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/mZz47exr5E2Q8gEio=" crossorigin="">
+    <link rel="stylesheet" href="css/interactive-map.css">
+    <link rel="stylesheet" href="css/local-backup-map.css">
+    <link rel="stylesheet" href="css/detailed-checklist.css">
+    <link rel="stylesheet" href="css/simple-page-switcher.css">
+    <link rel="stylesheet" href="css/rate-limit-panel.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a237e">
+    <meta name="description" content="歐洲四國隨身導遊 - 智能行程提醒、景點導覽、實用提醒 - 手機優先設計">
+</head>
+<body>
+    <!-- 頂部狀態欄 -->
+    <header class="top-bar">
+        <a href="#" class="logo">
+            <i class="fas fa-compass"></i>
+            <span>歐洲隨身導遊</span>
+        </a>
+        
+        <div class="time-display">
+            <div class="time-item time-local">
+                <i class="fas fa-clock"></i>
+                <span class="time-label">當地：</span>
+                <span id="local-time">載入中...</span>
+            </div>
+            <div class="time-item time-taipei">
+                <i class="fas fa-flag"></i>
+                <span class="time-label">台北：</span>
+                <span id="taipei-time">載入中...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主內容區 -->
+    <main class="main-content">
+        <!-- 今日行程 -->
+        <section id="today" class="section active">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">
+                        <i class="fas fa-calendar-day"></i>
+                        今日行程
+                    </h1>
+                    <div class="date-display">
+                        <span id="current-date">2026年4月1日 星期三</span>
+                        <span class="day-counter">第 <span id="day-number">1</span> 天 / 10天</span>
+                    </div>
+                </div>
+                
+                <div class="today-header">
+                    <h2 class="today-title" id="today-title">台北 → 上海 (轉機)</h2>
+                    <div class="today-tags">
+                        <span class="tag tag-flight">
+                            <i class="fas fa-plane"></i>
+                            飛行日
+                        </span>
+                        <span class="tag tag-time">
+                            <i class="fas fa-clock"></i>
+                            集合: 15:30
+                        </span>
+                        <span class="tag tag-weather">
+                            <i class="fas fa-cloud-sun"></i>
+                            12-18°C
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">15:30</div>
+                        <div class="timeline-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">機場集合</h3>
+                            <p class="timeline-desc">桃園國際機場第二航廈集合</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">17:30</div>
+                        <div class="timeline-icon">
+                            <i class="fas fa-suitcase-rolling"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">辦理登機</h3>
+                            <p class="timeline-desc">辦理登機手續及行李托運</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">20:10</div>
+                        <div class="timeline-icon">
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">起飛（台灣→上海）</h3>
+                            <p class="timeline-desc">搭乘班機飛往上海浦東機場</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-actions">
+                    <button class="btn btn-outline" id="prev-day">
+                        <i class="fas fa-chevron-left"></i>
+                        前一天
+                    </button>
+                    <button class="btn btn-primary" id="next-day">
+                        後一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 完整行程 -->
+        <section id="itinerary" class="section">
+            <div class="card">
+                <h1 class="card-title">
+                    <i class="fas fa-route"></i>
+                    完整10天行程
+                </h1>
+                <p>第1天：台北 → 上海 (轉機) → 布達佩斯</p>
+                <p>第2天：布達佩斯市區觀光</p>
+                <p>第3天：布達佩斯 → 布拉提斯拉瓦</p>
+                <p>第4天：布拉提斯拉瓦 → 維也納</p>
+                <p>第5天：維也納市區觀光</p>
+                <p>第6天：維也納 → 布爾諾</p>
+                <p>第7天：布爾諾 → 布拉格</p>
+                <p>第8天：布拉格市區觀光</p>
+                <p>第9天：布拉格 → 庫倫洛夫</p>
+                <p>第10天：庫倫洛夫 → 台北</p>
+            </div>
+        </section>
+        
+        <!-- 互動地圖 -->
+        <section id="map" class="section">
+            <div class="card">
+                <h1 class="card-title">
+                    <i class="fas fa-map-marked-alt"></i>
+                    互動地圖
+                </h1>
+                <p>歐洲四國行程地圖</p>
+            </div>
+        </section>
+        
+        <!-- 實用提醒 -->
+        <section id="tips" class="section">
+            <div class="card">
+                <h1 class="card-title">
+                    <i class="fas fa-lightbulb"></i>
+                    實用提醒
+                </h1>
+                <p>1. 隨身攜帶護照和重要文件</p>
+                <p>2. 注意當地天氣變化</p>
+                <p>3. 保管好貴重物品</p>
+                <p>4. 遵守當地法律法規</p>
+            </div>
+        </section>
+        
+        <!-- 檢查清單 -->
+        <section id="checklist" class="section">
+            <div class="card">
+                <h1 class="card-title">
+                    <i class="fas fa-check-square"></i>
+                    檢查清單
+                </h1>
+                <p>□ 護照及簽證</p>
+                <p>□ 機票確認</p>
+                <p>□ 酒店預訂</p>
+                <p>□ 旅行保險</p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 底部導航欄 -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-container">
+            <a href="#today" class="bottom-nav-item active">
+                <i class="fas fa-calendar-day"></i>
+                <span class="bottom-nav-text">今日行程</span>
+            </a>
+            <a href="#itinerary" class="bottom-nav-item">
+                <i class="fas fa-route"></i>
+                <span class="bottom-nav-text">完整行程</span>
+            </a>
+            <a href="#map" class="bottom-nav-item">
+                <i class="fas fa-map-marked-alt"></i>
+                <span class="bottom-nav-text">互動地圖</span>
+            </a>
+            <a href="#tips" class="bottom-nav-item">
+                <i class="fas fa-lightbulb"></i>
+                <span class="bottom-nav-text">實用提醒</span>
+            </a>
+            <a href="#checklist" class="bottom-nav-item">
+                <i class="fas fa-check-square"></i>
+                <span class="bottom-nav-text">檢查清單</span>
+            </a>
+        </div>
+    </nav>
+    
+    <!-- 載入腳本 -->
+    <script src="js/europe-tour-data.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/itinerary-database.js"></script>
+    <script src="js/date-auto-switch.js"></script>
+    <script src="js/date-switch-ui.js"></script>
+    <script src="js/nav-time-display.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script>
+        // 初始化時間顯示
+        function initTimeDisplay() {
+            const localTimeElement = document.getElementById('local-time');
+            const taipeiTimeElement = document.getElementById('taipei-time');
+            
+            function updateTimes() {
+                const now = new Date();
+                
+                // 當地時間（歐洲中部時間）
+                const localTime = new Date(now.toLocaleString('en-US', {
+                    timeZone: 'Europe/Berlin'
+                }));
+                localTimeElement.textContent = localTime.toLocaleTimeString('zh-TW', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+                
+                // 台北時間
+                const taipeiTime = new Date(now.toLocaleString('en-US', {
+                    timeZone: 'Asia/Taipei'
+                }));
+                taipeiTimeElement.textContent = taipeiTime.toLocaleTimeString('zh-TW', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+            }
+            
+            updateTimes();
+            setInterval(updateTimes, 1000);
+        }
+        
+        // 初始化導航
+        function initNavigation() {
+            // 底部導航點擊處理
+            document.querySelectorAll('.bottom-nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // 移除所有active狀態
+                    document.querySelectorAll('.bottom-nav-item').forEach(el => {
+                        el.classList.remove('active');
+                    });
+                    
+                    // 添加active狀態
+                    this.classList.add('active');
+                    
+                    // 滾動到對應區塊
+                    const targetId = this.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        
+        // 初始化應用
+        function initApp() {
+            console.log('🚀 歐洲隨身導遊 - 手機優先設計啟動...');
+            
+            initTimeDisplay();
+            initNavigation();
+            
+            console.log('✅ 應用初始化完成');
+        }
+        
+        // 等待DOM載入
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
+    </script>
+    <script src="js/time-display-with-labels.js"></script>
+    <script src="js/detailed-checklist-data.js"></script>
+    <script src="js/detailed-checklist-display.js"></script>
+    <script src="js/detailed-practical-tips.js"></script>
+    <script src="js/detailed-tips-display.js"></script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+/* 修復版導航欄 - 確保版面正常 */
+.navbar {
+    background: linear-gradient(90deg, #1a237e 0%, #c41e3a 100%);
+    color: #ffffff;
+    padding: 4px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    min-height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 導航欄第一行：logo + 時間顯示 + 導航菜單 */
+.nav-row-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 28px;
+    box-sizing: border-box;
+}
+
+/* 導航欄第二行：功能按鈕 */
+.nav-row-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-height: 24px;
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    white-space: nowrap;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.logo i {
+    font-size: 1rem;
+    color: #ffd700;
+}
+
+/* 導航時間顯示 */
+.nav-time-display {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 4px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    white-space: nowrap;
+}
+
+.time-local,
+.time-taipei {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.time-local i {
+    color: #ffd700;
+    font-size: 0.8rem;
+}
+
+.time-taipei i {
+    color: #228b22;
+    font-size: 0.8rem;
+}
+
+.city-name {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    margin-right: 2px;
+    font-size: 0.75rem;
+}
+
+.time-local span:not(.city-name),
+.time-taipei span:not(.city-name) {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+    font-size: 0.8rem;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    opacity: 0.9;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.nav-link i {
+    font-size: 0.8rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* 按鈕樣式 */
+.btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    min-height: 32px;
+    box-sizing: border-box;
+}
+
+.btn i {
+    font-size: 0.8rem;
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1a237e 0%, #3f51b5 100%);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #151d6b 0%, #303f9f 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #ffffff;
+}

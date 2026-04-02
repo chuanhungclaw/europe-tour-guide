@@ -1,0 +1,534 @@
+/* 歐洲隨身導遊 - 現代化重新設計 */
+:root {
+    /* 現代化配色 */
+    --primary-dark: #0a192f;      /* 深藍色背景 */
+    --primary-light: #112240;     /* 中藍色 */
+    --accent-blue: #64ffda;       /* 青藍色強調色 */
+    --accent-purple: #8892b0;     /* 紫色文字 */
+    --text-white: #e6f1ff;        /* 白色文字 */
+    --text-light: #a8b2d1;        /* 淺灰色文字 */
+    --card-bg: #112240;           /* 卡片背景 */
+    --hover-bg: #233554;          /* 懸停背景 */
+    
+    /* 間距系統 */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-xxl: 48px;
+    
+    /* 圓角 */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    
+    /* 陰影 */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.4);
+    
+    /* 動畫 */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* 基礎重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background: var(--primary-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 現代化導航欄 */
+.navbar {
+    background: rgba(10, 25, 47, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    padding: 0 var(--space-lg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    transition: all var(--transition-normal);
+}
+
+.nav-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo設計 */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    color: var(--text-white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+}
+
+.logo i {
+    color: var(--accent-blue);
+    font-size: 1.4rem;
+}
+
+.logo:hover {
+    transform: translateY(-1px);
+    color: var(--accent-blue);
+}
+
+/* 導航菜單 */
+.nav-menu {
+    display: flex;
+    gap: var(--space-xl);
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: var(--space-sm) 0;
+    position: relative;
+    transition: all var(--transition-fast);
+    letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+    color: var(--accent-blue);
+}
+
+.nav-link.active {
+    color: var(--accent-blue);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-blue);
+    border-radius: 1px;
+}
+
+/* 時間顯示 - 現代化設計 */
+.nav-time-display {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.time-local,
+.time-taipei {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.time-local i {
+    color: var(--accent-blue);
+    font-size: 0.9rem;
+}
+
+.time-taipei i {
+    color: #36d1dc;
+    font-size: 0.9rem;
+}
+
+.city-name {
+    font-weight: 600;
+    color: var(--text-white);
+    font-size: 0.8rem;
+}
+
+.time-local span:not(.city-name),
+.time-taipei span:not(.city-name) {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-white);
+    font-size: 0.85rem;
+}
+
+/* 主內容區 */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: calc(64px + var(--space-xl)) var(--space-lg) var(--space-xxl);
+}
+
+/* 英雄區域 */
+.hero-section {
+    text-align: center;
+    padding: var(--space-xxl) 0;
+    margin-bottom: var(--space-xxl);
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+    z-index: -1;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto var(--space-xl);
+    line-height: 1.6;
+}
+
+/* 卡片設計 */
+.section {
+    margin-bottom: var(--space-xxl);
+}
+
+.section-header {
+    margin-bottom: var(--space-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.section-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.section-header h1 i {
+    color: var(--accent-blue);
+}
+
+/* 行程卡片 */
+.today-card,
+.itinerary-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.today-card:hover,
+.itinerary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+.today-card::before,
+.itinerary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--accent-blue), transparent);
+}
+
+/* 日期顯示 */
+.date-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-xs);
+}
+
+#currentDate {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-white);
+}
+
+.day-counter {
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    font-weight: 500;
+}
+
+/* 按鈕設計 */
+.btn {
+    padding: var(--space-sm) var(--space-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    background: transparent;
+    color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    background: rgba(100, 255, 218, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(100, 255, 218, 0.2);
+}
+
+.btn-primary {
+    background: var(--accent-blue);
+    color: var(--primary-dark);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #52d4b9;
+    box-shadow: 0 4px 12px rgba(100, 255, 218, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid rgba(136, 146, 176, 0.3);
+}
+
+.btn-outline:hover {
+    background: rgba(136, 146, 176, 0.1);
+    border-color: rgba(136, 146, 176, 0.5);
+    color: var(--text-white);
+}
+
+/* 時間軸設計 */
+.today-timeline {
+    margin: var(--space-xl) 0;
+    position: relative;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid rgba(136, 146, 176, 0.1);
+    position: relative;
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+}
+
+.timeline-time {
+    min-width: 80px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--accent-blue);
+    font-size: 1rem;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-white);
+    margin-bottom: var(--space-xs);
+}
+
+.timeline-description {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.timeline-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(100, 255, 218, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-blue);
+    font-size: 1rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 var(--space-md);
+        height: 56px;
+    }
+    
+    .nav-menu {
+        gap: var(--space-md);
+    }
+    
+    .nav-time-display {
+        gap: var(--space-md);
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .main-content {
+        padding: calc(56px + var(--space-lg)) var(--space-md) var(--space-xl);
+    }
+    
+    .section-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .today-card,
+    .itinerary-card {
+        padding: var(--space-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        display: none; /* 手機端可以考慮漢堡菜單 */
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .timeline-time {
+        min-width: auto;
+    }
+}
+
+/* 動畫效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* 應用動畫 */
+.today-card,
+.itinerary-card {
+    animation: fadeIn 0.6s ease;
+}
+
+.timeline-item {
+    animation: slideIn 0.4s ease;
+    animation-fill-mode: both;
+}
+
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.timeline-item:nth-child(5) { animation-delay: 0.5s; }
+.timeline-item:nth-child(6) { animation-delay: 0.6s; }

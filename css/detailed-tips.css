@@ -1,0 +1,494 @@
+/* 詳盡實用提醒樣式 */
+
+/* 容器樣式 */
+.detailed-tips-container {
+    padding: 16px;
+    max-width: 100%;
+}
+
+.detailed-tips-header {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.detailed-tips-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.detailed-tips-title i {
+    color: #ffc107;
+    font-size: 1.8rem;
+}
+
+.detailed-tips-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* 分類導航 */
+.tips-category-nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 12px 0;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.tips-category-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.category-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    min-width: 80px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.category-btn.active {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: white;
+}
+
+.category-btn:hover:not(.active) {
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.category-icon {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.category-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* 分類內容 */
+.category-content {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.category-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 8px;
+}
+
+.category-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* 提醒項目 */
+.tips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.tip-item {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 12px 16px; /* 減少上下padding */
+    transition: all 0.2s ease;
+    overflow: hidden; /* 防止內容溢出 */
+}
+
+.tip-item:hover {
+    background: #f0f2f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tip-critical {
+    border-left: 4px solid #dc3545;
+    background: #fff5f5;
+}
+
+.tip-high {
+    border-left: 4px solid #fd7e14;
+    background: #fff9f0;
+}
+
+.tip-medium {
+    border-left: 4px solid #ffc107;
+    background: #fffdf0;
+}
+
+.tip-low {
+    border-left: 4px solid #28a745;
+    background: #f0fff4;
+}
+
+.tip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.tip-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tip-title i {
+    font-size: 0.6rem;
+    color: #666;
+}
+
+.tip-toggle-btn {
+    background: transparent;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.tip-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--primary-blue);
+}
+
+/* 提醒詳細內容 */
+.tip-details {
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.tip-importance {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+}
+
+.importance-label {
+    font-weight: 600;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.importance-value {
+    font-weight: 700;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.tip-critical .importance-value {
+    color: #dc3545;
+}
+
+.tip-high .importance-value {
+    color: #fd7e14;
+}
+
+.tip-medium .importance-value {
+    color: #ffc107;
+}
+
+.tip-low .importance-value {
+    color: #28a745;
+}
+
+.tip-reminder {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(26, 35, 126, 0.05);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    color: var(--primary-blue);
+    font-weight: 500;
+}
+
+.tip-reminder i {
+    color: var(--primary-blue);
+}
+
+.tip-details-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tip-details-list li {
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    color: #555;
+    line-height: 1.5;
+}
+
+.tip-details-list li:before {
+    content: "•";
+    color: var(--primary-blue);
+    font-weight: bold;
+    position: absolute;
+    left: 8px;
+    font-size: 1.2rem;
+}
+
+/* 分類摘要 */
+.category-summary {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.summary-item i {
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+}
+
+.summary-item span {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* 快速操作 */
+.tips-quick-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.tips-quick-actions .btn {
+    flex: 1;
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+/* 載中狀態 */
+.tips-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: #666;
+    gap: 16px;
+}
+
+.tips-loading i {
+    font-size: 2rem;
+    color: var(--primary-blue);
+}
+
+/* 錯誤狀態 */
+.tips-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    gap: 16px;
+}
+
+.tips-error i {
+    font-size: 3rem;
+    color: #dc3545;
+}
+
+.tips-error h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.tips-error p {
+    color: #666;
+    margin: 0;
+}
+
+/* 訊息提示 */
+.tips-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10000;
+    animation: slideIn 0.3s ease;
+}
+
+.tips-message.success {
+    border-left: 4px solid #28a745;
+}
+
+.tips-message.error {
+    border-left: 4px solid #dc3545;
+}
+
+.tips-message i {
+    font-size: 1.2rem;
+}
+
+.tips-message.success i {
+    color: #28a745;
+}
+
+.tips-message.error i {
+    color: #dc3545;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .detailed-tips-container {
+        padding: 12px;
+    }
+    
+    .detailed-tips-title {
+        font-size: 1.3rem;
+    }
+    
+    .category-content {
+        padding: 16px;
+    }
+    
+    .category-title {
+        font-size: 1.2rem;
+    }
+    
+    .tip-title {
+        font-size: 1rem;
+    }
+    
+    .category-summary {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .tips-quick-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .tips-category-nav {
+        gap: 6px;
+    }
+    
+    .category-btn {
+        padding: 10px 12px;
+        min-width: 70px;
+    }
+    
+    .category-icon {
+        font-size: 1rem;
+    }
+    
+    .category-text {
+        font-size: 0.75rem;
+    }
+    
+    .tip-details-list li {
+        font-size: 0.9rem;
+    }
+}
+
+/* 觸摸優化 */
+.category-btn,
+.tip-toggle-btn,
+.tips-quick-actions .btn {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* 打印樣式 */
+@media print {
+    .tips-category-nav,
+    .tips-quick-actions {
+        display: none;
+    }
+    
+    .tip-item {
+        break-inside: avoid;
+        border: 1px solid #ddd;
+    }
+    
+    .tip-details {
+        display: block !important;
+    }
+}

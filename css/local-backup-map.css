@@ -1,0 +1,603 @@
+/* 本地備用地圖樣式 */
+
+.local-backup-map {
+    padding: 16px;
+    max-width: 100%;
+}
+
+.backup-map-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.backup-map-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.backup-map-title i {
+    color: #28a745;
+    font-size: 1.8rem;
+}
+
+.backup-map-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* 地圖控制面板 */
+.backup-map-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.backup-control-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px;
+    background: white;
+    border: 2px solid var(--primary-blue);
+    border-radius: 12px;
+    color: var(--primary-blue);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.backup-control-btn:hover {
+    background: var(--primary-blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.backup-control-btn:active {
+    transform: translateY(0);
+}
+
+.backup-control-btn i {
+    font-size: 1.1rem;
+}
+
+/* 地圖包裝器 */
+.backup-map-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+    min-height: 400px;
+}
+
+.backup-map-area {
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+
+.europe-background-map {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+}
+
+/* 路線線條 */
+.backup-route-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(76, 201, 240, 0.3) 10px,
+        rgba(76, 201, 240, 0.3) 20px
+    );
+    pointer-events: none;
+}
+
+/* 地圖點 */
+.backup-map-point {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.backup-map-point.blue {
+    background: #1a237e;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(26, 35, 126, 0.3);
+}
+
+.backup-map-point.red {
+    background: #c41e3a;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.3);
+}
+
+.backup-map-point.highlighted {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    z-index: 20;
+}
+
+.backup-point-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.backup-point-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    max-width: 250px;
+    display: none;
+    z-index: 30;
+    margin-bottom: 10px;
+}
+
+.backup-point-tooltip:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+.backup-map-point:hover .backup-point-tooltip {
+    display: block;
+}
+
+.backup-point-tooltip h4 {
+    color: var(--primary-blue);
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+}
+
+.backup-point-tooltip p {
+    margin: 4px 0;
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* 地圖圖例 */
+.backup-map-legend {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: calc(100% - 32px);
+    z-index: 5;
+}
+
+.backup-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.backup-legend-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.backup-legend-dot.blue {
+    background: #1a237e;
+}
+
+.backup-legend-dot.red {
+    background: #c41e3a;
+}
+
+.backup-legend-line {
+    width: 20px;
+    height: 4px;
+    background: repeating-linear-gradient(
+        45deg,
+        #4cc9f0,
+        #4cc9f0 5px,
+        transparent 5px,
+        transparent 10px
+    );
+    border-radius: 2px;
+}
+
+.backup-legend-item span:last-child {
+    font-size: 0.8rem;
+    color: #333;
+    white-space: nowrap;
+}
+
+/* 景點列表面板 */
+.backup-locations-panel {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.backup-panel-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.backup-panel-title i {
+    color: #28a745;
+}
+
+.backup-locations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.backup-locations-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.backup-locations-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.backup-locations-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.backup-locations-list::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+/* 景點項目 */
+.backup-location-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.backup-location-item:hover {
+    background: #f0f2f5;
+    transform: translateX(4px);
+    border-left-color: var(--primary-blue);
+}
+
+.backup-location-number {
+    width: 32px;
+    height: 32px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.backup-location-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.backup-location-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.backup-location-country {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.backup-location-description {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.backup-location-view-btn {
+    background: transparent;
+    border: none;
+    color: var(--primary-blue);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.backup-location-view-btn:hover {
+    background: rgba(26, 35, 126, 0.1);
+    transform: scale(1.1);
+}
+
+/* 地圖資訊 */
+.backup-map-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.backup-info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.backup-info-item i {
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+}
+
+.backup-info-item span {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+}
+
+/* 提示訊息 */
+.backup-map-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: #fff9e6;
+    border-radius: 12px;
+    border-left: 4px solid #ffc107;
+    margin-top: 20px;
+}
+
+.backup-map-note i {
+    color: #ffc107;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.backup-map-note p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 地圖訊息 */
+.backup-map-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10000;
+    animation: slideInUp 0.3s ease;
+}
+
+.backup-map-message.info {
+    border-left: 4px solid #17a2b8;
+}
+
+.backup-map-message.success {
+    border-left: 4px solid #28a745;
+}
+
+.backup-map-message.error {
+    border-left: 4px solid #dc3545;
+}
+
+.backup-map-message i {
+    font-size: 1.2rem;
+}
+
+.backup-map-message.info i {
+    color: #17a2b8;
+}
+
+.backup-map-message.success i {
+    color: #28a745;
+}
+
+.backup-map-message.error i {
+    color: #dc3545;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .local-backup-map {
+        padding: 12px;
+    }
+    
+    .backup-map-title {
+        font-size: 1.3rem;
+    }
+    
+    .backup-map-area {
+        height: 350px;
+    }
+    
+    .backup-map-wrapper {
+        min-height: 350px;
+    }
+    
+    .backup-map-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .backup-locations-list {
+        max-height: 250px;
+    }
+    
+    .backup-point-tooltip {
+        min-width: 180px;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .backup-map-area {
+        height: 300px;
+    }
+    
+    .backup-map-wrapper {
+        min-height: 300px;
+    }
+    
+    .backup-map-legend {
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    .backup-location-item {
+        padding: 10px;
+    }
+    
+    .backup-location-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+    
+    .backup-location-name {
+        font-size: 0.95rem;
+    }
+    
+    .backup-location-description {
+        font-size: 0.8rem;
+    }
+    
+    .backup-point-tooltip {
+        min-width: 160px;
+        max-width: 180px;
+        padding: 10px;
+    }
+}
+
+/* 觸摸優化 */
+.backup-control-btn,
+.backup-location-view-btn {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.backup-location-item {
+    min-height: 44px;
+}
+
+.backup-map-point {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* 打印樣式 */
+@media print {
+    .backup-map-controls,
+    .backup-map-legend,
+    .backup-location-view-btn,
+    .backup-map-note {
+        display: none;
+    }
+    
+    .backup-map-area {
+        height: 500px;
+    }
+    
+    .backup-locations-list {
+        max-height: none;
+        overflow: visible;
+    }
+    
+    .backup-location-item {
+        break-inside: avoid;
+    }
+}

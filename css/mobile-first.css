@@ -1,0 +1,512 @@
+/* 歐洲隨身導遊 - 手機優先設計 */
+/* 完全以手機體驗為核心 */
+
+:root {
+    /* 手機友好配色 */
+    --primary-blue: #1a237e;
+    --accent-red: #c41e3a;
+    --text-white: #ffffff;
+    --text-light: rgba(255, 255, 255, 0.9);
+    --button-bg: rgba(255, 255, 255, 0.2);
+    --button-active: rgba(76, 201, 240, 0.3);
+    
+    /* 手機友好尺寸 */
+    --nav-height: 60px;
+    --button-height: 44px;
+    --font-size-base: 16px;
+    --font-size-small: 14px;
+}
+
+/* 基礎重置 - 手機優化 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    font-size: var(--font-size-base);
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.5;
+    color: #333;
+    background: #f5f5f5;
+    min-height: 100vh;
+    padding-top: var(--nav-height);
+    padding-bottom: 80px; /* 給底部導航空間 */
+    overflow-x: hidden;
+}
+
+/* ==================== */
+/* 1. 底部導航欄 - 手機優先 */
+/* ==================== */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--primary-blue);
+    z-index: 1000;
+    padding: 8px 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bottom-nav-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-light);
+    padding: 4px 8px;
+    min-width: 60px;
+    transition: all 0.2s ease;
+}
+
+.bottom-nav-item.active {
+    color: #4cc9f0;
+}
+
+.bottom-nav-icon {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+}
+
+.bottom-nav-text {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* ==================== */
+/* 2. 頂部狀態欄 */
+/* ==================== */
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-red) 100%);
+    z-index: 1001;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--nav-height);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.logo i {
+    font-size: 1.2rem;
+    color: #4cc9f0;
+}
+
+.time-display {
+    display: flex;
+    gap: 16px;
+}
+
+.time-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-white);
+}
+
+.time-label {
+    font-weight: 600;
+    opacity: 0.9;
+    font-size: 0.75rem;
+}
+
+.time-local .time-label {
+    color: #4cc9f0;
+}
+
+.time-taipei .time-label {
+    color: #36d1dc;
+}
+
+.time-item i {
+    font-size: 0.9rem;
+}
+
+.time-local i {
+    color: #4cc9f0;
+}
+
+.time-taipei i {
+    color: #36d1dc;
+}
+
+.time-value {
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* ==================== */
+/* 3. 主內容區 - 手機優化 */
+/* ==================== */
+
+.main-content {
+    padding: 16px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* 卡片設計 - 手機友好 */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==================== */
+/* 4. 今日行程 - 手機優化 */
+/* ==================== */
+
+.today-header {
+    margin-bottom: 16px;
+}
+
+.today-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 8px;
+}
+
+.today-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.tag-flight {
+    background: rgba(26, 35, 126, 0.1);
+    color: var(--primary-blue);
+}
+
+.tag-time {
+    background: rgba(196, 30, 58, 0.1);
+    color: var(--accent-red);
+}
+
+/* 時間軸 - 手機優化 */
+.timeline {
+    margin: 20px 0;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+}
+
+.timeline-time {
+    min-width: 60px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    font-size: 1rem;
+}
+
+.timeline-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(26, 35, 126, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+    margin: 0 12px;
+    flex-shrink: 0;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.timeline-desc {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* ==================== */
+/* 5. 按鈕 - 手機友好 */
+/* ==================== */
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    min-height: var(--button-height);
+    width: 100%;
+    margin: 8px 0;
+}
+
+.btn-primary {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+}
+
+/* ==================== */
+/* 6. 響應式調整 */
+/* ==================== */
+
+/* 平板 */
+@media (min-width: 768px) {
+    .bottom-nav-container {
+        max-width: 600px;
+    }
+    
+    .main-content {
+        max-width: 600px;
+    }
+    
+    .btn {
+        width: auto;
+        min-width: 120px;
+    }
+}
+
+/* 桌面 - 保持手機風格 */
+@media (min-width: 1024px) {
+    body {
+        padding-top: 70px;
+        padding-bottom: 0;
+    }
+    
+    .bottom-nav {
+        display: none;
+    }
+    
+    .top-nav {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-red) 100%);
+        padding: 0 24px;
+        height: 70px;
+        z-index: 1000;
+    }
+    
+    .top-nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .top-nav-menu {
+        display: flex;
+        gap: 24px;
+    }
+    
+    .top-nav-link {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: background 0.2s ease;
+    }
+    
+    .top-nav-link:hover,
+    .top-nav-link.active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .main-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 24px;
+    }
+}
+
+/* 超大手機 (iPhone Pro Max等) */
+@media (min-width: 428px) and (max-width: 767px) {
+    .bottom-nav-container {
+        padding: 0 20px;
+    }
+    
+    .bottom-nav-item {
+        min-width: 70px;
+    }
+    
+    .bottom-nav-text {
+        font-size: 0.75rem;
+    }
+}
+
+/* 超小手機 */
+@media (max-width: 320px) {
+    .bottom-nav-text {
+        font-size: 0.65rem;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .timeline-time {
+        min-width: auto;
+    }
+}
+
+/* ==================== */
+/* 7. 觸摸優化 */
+/* ==================== */
+
+/* 確保觸摸目標足夠大 */
+button,
+a,
+input[type="button"],
+input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* 防止文字選擇 */
+.nav-item,
+.btn {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* 平滑滾動 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 防止彈跳 */
+body {
+    overscroll-behavior: none;
+}
+
+/* ==================== */
+/* 8. 性能優化 */
+/* ==================== */
+
+/* 減少動畫複雜度 */
+* {
+    animation-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+/* 圖片優化 */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 減少重繪 */
+.fixed-element {
+    will-change: transform;
+}
+
+/* ==================== */
+/* 9. 可訪問性 */
+/* ==================== */
+
+/* 焦點狀態 */
+button:focus,
+a:focus,
+input:focus {
+    outline: 2px solid #4cc9f0;
+    outline-offset: 2px;
+}
+
+/* 高對比度支持 */
+@media (prefers-contrast: high) {
+    .card {
+        border: 1px solid #000;
+    }
+    
+    .btn {
+        border: 2px solid #000;
+    }
+}

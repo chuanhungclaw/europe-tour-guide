@@ -1,0 +1,234 @@
+/* 手機版導航菜單修復 - 2026-03-31 */
+/* 解決手機版看不到導航菜單的問題 */
+
+/* 1. 漢堡菜單按鈕樣式 */
+.hamburger-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    transition: all var(--transition-fast);
+    z-index: 1001;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger-btn:hover {
+    color: var(--accent-blue);
+}
+
+.hamburger-btn.active {
+    color: var(--accent-blue);
+}
+
+/* 2. 手機版導航菜單 */
+.mobile-nav-menu {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--primary-dark);
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    padding: 16px;
+    z-index: 999;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.mobile-nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: slideDown 0.3s ease;
+}
+
+.mobile-nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    font-size: 1rem;
+    text-align: center;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--accent-blue);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. 手機版響應式設計 */
+@media (max-width: 768px) {
+    /* 顯示漢堡菜單按鈕 */
+    .hamburger-btn {
+        display: block;
+    }
+    
+    /* 隱藏桌面版導航菜單 */
+    .nav-menu {
+        display: none !important;
+    }
+    
+    /* 調整導航欄佈局 */
+    .navbar {
+        height: 56px;
+        padding: 0 var(--space-md);
+        position: relative;
+    }
+    
+    .nav-container {
+        position: relative;
+        padding-right: 50px; /* 給漢堡菜單留空間 */
+    }
+    
+    .logo {
+        font-size: 1rem;
+    }
+    
+    .logo i {
+        font-size: 1.2rem;
+    }
+    
+    /* 調整時間顯示 */
+    .nav-time-display {
+        display: none; /* 手機版隱藏時間顯示 */
+    }
+    
+    /* 調整主內容區 */
+    .main-content {
+        padding: calc(56px + var(--space-lg)) var(--space-md) var(--space-xl);
+    }
+    
+    /* 調整英雄區域 */
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    /* 調整按鈕 */
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    /* 調整卡片 */
+    .today-card,
+    .itinerary-card {
+        padding: var(--space-lg);
+    }
+    
+    /* 調整時間軸 */
+    .timeline-item {
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding: var(--space-md) 0;
+    }
+    
+    .timeline-time {
+        min-width: auto;
+        font-size: 0.9rem;
+    }
+    
+    .timeline-title {
+        font-size: 1rem;
+    }
+    
+    .timeline-description {
+        font-size: 0.85rem;
+    }
+}
+
+/* 超小螢幕（< 480px） */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .section-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .today-card,
+    .itinerary-card {
+        padding: var(--space-md);
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .mobile-nav-link {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* 平板（768px - 1024px） */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hamburger-btn {
+        display: none; /* 平板顯示完整導航 */
+    }
+    
+    .nav-menu {
+        display: flex !important;
+    }
+    
+    .nav-time-display {
+        display: flex !important;
+    }
+    
+    .navbar {
+        height: 64px;
+    }
+}
+
+/* 確保桌面版正常顯示 */
+@media (min-width: 1025px) {
+    .hamburger-btn {
+        display: none;
+    }
+    
+    .nav-menu {
+        display: flex !important;
+    }
+    
+    .nav-time-display {
+        display: flex !important;
+    }
+    
+    .mobile-nav-menu {
+        display: none !important;
+    }
+}

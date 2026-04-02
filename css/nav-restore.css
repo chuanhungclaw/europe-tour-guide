@@ -1,0 +1,188 @@
+/* 導航欄 - 極致壓縮版 */
+.navbar {
+    background: linear-gradient(90deg, var(--europe-blue) 0%, var(--vienna-red) 100%);
+    color: var(--white);
+    padding: 2px 8px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+    min-height: 30px;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+/* 導航欄第一行：logo + 時間顯示 + 導航菜單 */
+.nav-row-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 4px;
+    min-height: 18px;
+}
+
+/* 導航欄第二行：功能按鈕 */
+.nav-row-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 4px;
+    flex-wrap: wrap;
+    min-height: 16px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.logo i {
+    font-size: 0.8rem;
+    color: var(--europe-gold);
+}
+
+/* 導航時間顯示 - 極致壓縮版 */
+.nav-time-display {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1px 4px;
+    border-radius: 3px;
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+}
+
+.time-local,
+.time-taipei {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    font-size: 0.6rem;
+    font-weight: 500;
+}
+
+.time-local i {
+    color: var(--europe-gold);
+    font-size: 0.6rem;
+}
+
+.time-taipei i {
+    color: #228b22; /* 台灣綠色 */
+    font-size: 0.6rem;
+}
+
+.city-name {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-right: 1px;
+    font-size: 0.55rem;
+}
+
+.time-local span:not(.city-name),
+.time-taipei span:not(.city-name) {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    color: var(--white);
+    font-size: 0.6rem;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-link {
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    padding: 1px 4px;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+    font-size: 0.6rem;
+    white-space: nowrap;
+}
+
+.nav-link i {
+    font-size: 0.6rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+    transform: translateY(-0.5px);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 3px;
+}
+
+/* 按鈕樣式 - 極致壓縮版 */
+.btn {
+    padding: 1px 6px;
+    border: none;
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: 0.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    min-height: 16px;
+}
+
+.btn i {
+    font-size: 0.6rem;
+}
+
+.btn-sm {
+    padding: 0.5px 3px;
+    font-size: 0.55rem;
+}
+
+.btn-primary {
+    background: var(--europe-blue);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: #151d6b;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+}

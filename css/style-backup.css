@@ -1,0 +1,1326 @@
+/* 歐洲隨身導遊網站 - 主題樣式 */
+:root {
+    /* 歐洲主題配色 */
+    --europe-blue: #1a237e;        /* 歐盟藍 */
+    --europe-gold: #ffd700;        /* 歐洲皇室金 */
+    --vienna-red: #c41e3a;         /* 維也納紅 */
+    --prague-orange: #ff6b35;      /* 布拉格橙 */
+    --budapest-green: #228b22;    /* 布達佩斯綠 */
+    --salzburg-purple: #6a0dad;   /* 薩爾斯堡紫 */
+    
+    /* 中性色 */
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-gray: #6c757d;
+    --black: #212529;
+    
+    /* 功能色 */
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --info: #17a2b8;
+    
+    /* 陰影 */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+    --shadow-lg: 0 8px 16px rgba(0,0,0,0.2);
+    
+    /* 圓角 */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    
+    /* 間距 */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    
+    /* 字體 */
+    --font-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-mono: 'Courier New', monospace;
+}
+
+/* 基礎重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--black);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+    padding-bottom: 80px; /* 給底部工具列空間 */
+}
+
+/* 導航欄 - 附圖效果版 */
+.navbar {
+    background: #1a1a2e;
+    color: var(--white);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 48px;
+}
+
+/* 導航欄左側：logo */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* 導航欄右側：導航菜單 + 時間顯示 */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.logo i {
+    font-size: 1.2rem;
+    color: #4cc9f0;
+}
+
+/* 導航菜單 */
+.nav-menu {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 6px 0;
+    position: relative;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.nav-link.active {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #4cc9f0;
+    border-radius: 1px;
+}
+
+/* 時間顯示 - 附圖效果版 */
+.nav-time-display {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.time-local,
+.time-taipei {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.time-local i {
+    color: #4cc9f0;
+    font-size: 0.9rem;
+}
+
+.time-taipei i {
+    color: #36d1dc;
+    font-size: 0.9rem;
+}
+
+.city-name {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+}
+
+.time-local span:not(.city-name),
+.time-taipei span:not(.city-name) {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    font-size: 0.85rem;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-link {
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    padding: 1px 4px;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+    font-size: 0.6rem;
+    white-space: nowrap;
+}
+
+.nav-link i {
+    font-size: 0.6rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+    transform: translateY(-0.5px);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 3px;
+}
+
+/* 按鈕樣式 - 附圖效果版 */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    min-height: 36px;
+}
+
+.btn i {
+    font-size: 0.9rem;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4cc9f0 0%, #36d1dc 100%);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #36d1dc 0%, #4cc9f0 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(76, 201, 240, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+}
+
+.btn-primary {
+    background: var(--europe-blue);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: #151d6b;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 主內容區 */
+.main-content {
+    max-width: 1200px;
+    margin: var(--space-xl) auto;
+    padding: 0 var(--space-lg);
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+.section-header {
+    margin-bottom: var(--space-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.section-header h1 {
+    font-size: 2rem;
+    color: var(--europe-blue);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.date-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-xs);
+}
+
+#currentDate {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--dark-gray);
+}
+
+.day-counter {
+    background: var(--europe-blue);
+    color: var(--white);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-lg);
+    font-size: 0.9rem;
+}
+
+/* 今日行程卡片 */
+.today-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.today-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-xl);
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.day-info h2 {
+    font-size: 1.8rem;
+    color: var(--europe-blue);
+    margin-bottom: var(--space-sm);
+}
+
+.day-tags {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.tag.travel {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.tag.time {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.tag.weather {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* 時間軸 */
+.today-timeline {
+    position: relative;
+    padding: var(--space-lg) 0;
+    margin-bottom: var(--space-xl);
+}
+
+.today-timeline::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--medium-gray);
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: var(--space-lg);
+}
+
+.timeline-time {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px;
+    text-align: right;
+    padding-right: var(--space-sm);
+    font-weight: bold;
+    color: var(--europe-blue);
+}
+
+.timeline-content {
+    background: var(--light-gray);
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--europe-blue);
+}
+
+.timeline-content.current {
+    background: #e3f2fd;
+    border-left-color: var(--vienna-red);
+    box-shadow: var(--shadow-sm);
+}
+
+.timeline-title {
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    color: var(--europe-blue);
+}
+
+.timeline-desc {
+    color: var(--dark-gray);
+    font-size: 0.95rem;
+}
+
+/* 提醒區 */
+.today-alerts,
+.today-next {
+    background: var(--light-gray);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.today-alerts h3,
+.today-next h3 {
+    color: var(--europe-blue);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.alert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--white);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+    border-left: 4px solid;
+}
+
+.alert-item.important {
+    border-left-color: var(--danger);
+    background: #ffebee;
+}
+
+.alert-item.warning {
+    border-left-color: var(--warning);
+    background: #fff3e0;
+}
+
+.alert-item.info {
+    border-left-color: var(--info);
+    background: #e3f2fd;
+}
+
+.alert-icon {
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+.alert-text h4 {
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.alert-text p {
+    color: var(--dark-gray);
+    font-size: 0.95rem;
+}
+
+/* 明日預告 */
+.next-preview {
+    background: var(--white);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    border: 2px dashed var(--medium-gray);
+}
+
+.next-title {
+    font-weight: 600;
+    color: var(--europe-blue);
+    margin-bottom: var(--space-xs);
+}
+
+.next-highlights {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.next-highlight {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+}
+
+/* 行程卡片 */
+.itinerary-container {
+    display: grid;
+    gap: var(--space-md);
+}
+
+.itinerary-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--europe-blue);
+}
+
+.itinerary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.itinerary-card.current {
+    border-left-color: var(--vienna-red);
+    background: #e3f2fd;
+}
+
+.itinerary-card.past {
+    opacity: 0.7;
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.day-number {
+    background: var(--europe-blue);
+    color: var(--white);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.day-date {
+    font-weight: 600;
+    color: var(--europe-blue);
+    font-size: 1.1rem;
+}
+
+.day-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: var(--space-sm);
+}
+
+.day-summary {
+    color: var(--dark-gray);
+    margin-bottom: var(--space-md);
+}
+
+.day-details {
+    display: grid;
+    gap: var(--space-sm);
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+    background: var(--light-gray);
+    border-radius: var(--radius-md);
+}
+
+.detail-icon {
+    color: var(--europe-blue);
+    margin-top: 2px;
+}
+
+/* 地圖區 */
+.map-container {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    height: 500px;
+    margin-bottom: var(--space-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+.map-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-gray);
+    text-align: center;
+    padding: var(--space-xl);
+}
+
+.map-placeholder i {
+    color: var(--medium-gray);
+    margin-bottom: var(--space-md);
+}
+
+.map-legend {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+    padding: var(--space-md);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.legend-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+}
+
+.legend-icon.flight { background: var(--europe-blue); }
+.legend-icon.bus { background: var(--prague-orange); }
+.legend-icon.hotel { background: var(--budapest-green); }
+.legend-icon.attraction { background: var(--salzburg-purple); }
+
+/* 提醒區 */
+.tips-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.tip-category {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.tip-category h3 {
+    color: var(--europe-blue);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.tip-list {
+    display: grid;
+    gap: var(--space-sm);
+}
+
+.tip-item {
+    padding: var(--space-sm);
+    background: var(--light-gray);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+}
+
+.tip-item i {
+    color: var(--success);
+    margin-top: 2px;
+}
+
+/* 檢查清單 */
+.checklist-container {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.progress-display {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.progress-bar {
+    flex: 1;
+    height: 10px;
+    background: var(--medium-gray);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success) 0%, #8bc34a 100%);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+#checklistPercentage {
+    font-weight: 600;
+    color: var(--europe-blue);
+    min-width: 50px;
+}
+
+.checklist-category {
+    margin-bottom: var(--space-xl);
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.category-header h3 {
+    color: var(--europe-blue);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.category-progress {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+}
+
+.checklist-items {
+    display: grid;
+    gap: var(--space-sm);
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--light-gray);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checklist-item:hover {
+    background: var(--medium-gray);
+    transform: translateX(4px);
+}
+
+.checklist-item.checked {
+    background: #e8f5e9;
+}
+
+.checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--dark-gray);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.checklist-item.checked .checkbox {
+    background: var(--success);
+    border-color: var(--success);
+    color: var(--white);
+}
+
+.item-text {
+    flex: 1;
+}
+
+.item-important {
+    background: var(--danger);
+    color: var(--white);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* 底部工具列 */
+.toolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-top: 1px solid var(--medium-gray);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+}
+
+.toolbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    padding: var(--space-sm);
+}
+
+.tool-btn {
+    background: none;
+    border: none;
+    padding: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--dark-gray);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 100px;
+}
+
+.tool-btn i {
+    font-size: 1.2rem;
+}
+
+.tool-btn span {
+    font-size: 0.8rem;
+}
+
+.tool-btn.active {
+    color: var(--europe-blue);
+    transform: translateY(-4px);
+}
+
+.tool-btn.active i {
+    color: var(--vienna-red);
+}
+
+/* 通知 */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-md);
+    min-width: 300px;
+    max-width: 400px;
+    transform: translateX(400px);
+    transition: transform 0.5s ease;
+    z-index: 2000;
+    border-left: 4px solid;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification-content {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+    margin-top: 2px;
+}
+
+.notification.success {
+    border-left-color: var(--success);
+}
+
+.notification.warning {
+    border-left-color: var(--warning);
+}
+
+.notification.error {
+    border-left-color: var(--danger);
+}
+
+.notification.info {
+    border-left-color: var(--info);
+}
+
+.notification-text {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--dark-gray);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+/* 動畫 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-md);
+    }
+    
+    .nav-menu {
+        justify-content: center;
+        order: 3;
+        margin-top: var(--space-md);
+    }
+    
+    .nav-actions {
+        order: 2;
+        justify-content: center;
+    }
+    
+    .main-content {
+        padding: 0 var(--space-md);
+        margin: var(--space-lg) auto;
+    }
+    
+    .today-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .day-actions {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-md);
+    }
+    
+    .today-timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item {
+        padding-left: 40px;
+    }
+    
+    .timeline-time {
+        width: 40px;
+        font-size: 0.9rem;
+    }
+    
+    .tips-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .toolbar-container {
+        padding: var(--space-xs);
+    }
+    
+    .tool-btn span {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .date-display {
+        align-items: center;
+    }
+    
+    .day-tags {
+        justify-content: center;
+    }
+    
+    .map-legend {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-md);
+    }
+    
+    .notification {
+        left: 20px;
+        right: 20px;
+        min-width: auto;
+        max-width: none;
+    }
+}
+
+/* 列印樣式 */
+@media print {
+    .navbar,
+    .toolbar,
+    .notification,
+    .btn {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        padding: 0;
+    }
+    
+    .main-content {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .section {
+        display: block !important;
+        page-break-inside: avoid;
+    }
+    
+    .today-card,
+    .itinerary-card,
+    .tip-category,
+    .checklist-container {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* 手機導航欄響應式樣式 */
+@media (max-width: 768px) {
+    .nav-container {
+        gap: var(--space-sm);
+    }
+    
+    .nav-row-1 {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-sm);
+    }
+    
+    .nav-time-display {
+        order: 2;
+        justify-content: center;
+    }
+    
+    .nav-menu {
+        order: 3;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .logo {
+        order: 1;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .nav-row-2 {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .nav-actions {
+        display: flex;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-time-display {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-link {
+        width: 100%;
+        justify-content: center;
+    }
+}
+/* 漢堡菜單按鈕 */
+.hamburger-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    transition: all var(--transition-fast);
+}
+
+.hamburger-btn:hover {
+    color: var(--accent-blue);
+}
+
+/* 手機版導航菜單 */
+.mobile-nav-menu {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--primary-dark);
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    padding: 16px;
+    z-index: 999;
+    box-shadow: var(--shadow-lg);
+}
+
+.mobile-nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: slideDown 0.3s ease;
+}
+
+.mobile-nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    font-size: 1rem;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--accent-blue);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 手機版響應式設計 */
+@media (max-width: 768px) {
+    .hamburger-btn {
+        display: block;
+    }
+    
+    .nav-menu {
+        display: none;
+    }
+    
+    .nav-time-display {
+        display: none;
+    }
+    
+    .nav-actions {
+        display: none;
+    }
+    
+    .navbar {
+        height: 56px;
+        padding: 0 var(--space-md);
+    }
+    
+    .main-content {
+        padding: calc(56px + var(--space-lg)) var(--space-md) var(--space-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .section-header h1 {
+        font-size: 1.5rem;
+    }
+}

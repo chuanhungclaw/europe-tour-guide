@@ -1,0 +1,602 @@
+/* 專業旅遊網站設計系統 */
+
+:root {
+    /* 旅遊主題色系 */
+    --travel-primary: #2d6ae2;      /* 主藍色 - 天空與海洋 */
+    --travel-secondary: #00b894;   /* 次要色 - 自然與生態 */
+    --travel-accent: #fd79a8;       /* 強調色 - 浪漫與活力 */
+    --travel-success: #00cec9;      /* 成功色 - 清新與希望 */
+    --travel-warning: #fdcb6e;      /* 警告色 - 陽光與溫暖 */
+    --travel-danger: #e17055;       /* 危險色 - 熱情與警覺 */
+    
+    /* 中性色系 */
+    --travel-dark: #2d3436;         /* 深色 - 沉穩與專業 */
+    --travel-gray: #636e72;         /* 灰色 - 輔助與層次 */
+    --travel-light: #dfe6e9;        /* 淺色 - 背景與空間 */
+    --travel-white: #ffffff;        /* 白色 - 純淨與清晰 */
+    
+    /* 漸層效果 */
+    --gradient-sky: linear-gradient(135deg, #74b9ff, #0984e3);
+    --gradient-sunset: linear-gradient(135deg, #fd79a8, #e17055);
+    --gradient-nature: linear-gradient(135deg, #00b894, #00cec9);
+    --gradient-elegant: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    
+    /* 陰影系統 */
+    --shadow-travel: 0 10px 40px rgba(45, 52, 54, 0.1);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 15px 50px rgba(45, 52, 54, 0.15);
+    
+    /* 圓角系統 */
+    --radius-travel: 16px;
+    --radius-card: 12px;
+    --radius-button: 24px;
+    
+    /* 動畫時長 */
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ========== 專業旅遊網站設計 ========== */
+
+/* 頂部導航 - 專業旅遊風格 */
+
+.top-bar {
+    background: var(--gradient-sky);
+    box-shadow: var(--shadow-travel);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.top-bar-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--travel-white);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.top-bar-title i {
+    font-size: 1.6rem;
+    color: var(--travel-white);
+}
+
+/* 時間顯示 - 專業風格 */
+
+.time-display {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--travel-white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+/* 主要內容區域 - 卡片式設計 */
+
+.main-content {
+    margin-top: 90px;
+    padding: 24px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 功能卡片設計 */
+
+.travel-card {
+    background: var(--travel-white);
+    border-radius: var(--radius-travel);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    margin-bottom: 24px;
+    border: 1px solid var(--travel-light);
+}
+
+.travel-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-header {
+    padding: 24px;
+    background: var(--gradient-sky);
+    color: var(--travel-white);
+}
+
+.card-header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-content {
+    padding: 24px;
+}
+
+/* 今日行程卡片 */
+
+.today-card {
+    border-top: 4px solid var(--travel-primary);
+}
+
+.today-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background: var(--travel-light);
+    border-radius: 12px;
+    transition: var(--transition-smooth);
+}
+
+.schedule-item:hover {
+    background: var(--travel-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateX(5px);
+}
+
+.schedule-time {
+    font-weight: 700;
+    color: var(--travel-primary);
+    min-width: 80px;
+    font-size: 1.1rem;
+}
+
+.schedule-details {
+    flex: 1;
+}
+
+.schedule-details h4 {
+    color: var(--travel-dark);
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+}
+
+.schedule-details p {
+    color: var(--travel-gray);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* 完整行程卡片 */
+
+.full-itinerary-card {
+    border-top: 4px solid var(--travel-secondary);
+}
+
+.day-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.day-button {
+    padding: 12px 20px;
+    background: var(--travel-light);
+    border: 2px solid var(--travel-light);
+    border-radius: 12px;
+    font-weight: 600;
+    color: var(--travel-gray);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    min-width: 80px;
+    text-align: center;
+}
+
+.day-button:hover {
+    border-color: var(--travel-secondary);
+    color: var(--travel-secondary);
+    transform: translateY(-2px);
+}
+
+.day-button.active {
+    background: var(--travel-secondary);
+    border-color: var(--travel-secondary);
+    color: var(--travel-white);
+    box-shadow: 0 4px 12px rgba(0, 184, 148, 0.3);
+}
+
+/* 互動地圖卡片 */
+
+.map-card {
+    border-top: 4px solid var(--travel-accent);
+}
+
+.map-container {
+    width: 100%;
+    height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    position: relative;
+}
+
+.map-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--travel-gray);
+}
+
+.map-controls {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.map-control-btn {
+    padding: 12px 24px;
+    background: var(--travel-accent);
+    color: var(--travel-white);
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    min-width: 100px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(253, 121, 168, 0.3);
+}
+
+.map-control-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(253, 121, 168, 0.4);
+}
+
+/* 實用提醒卡片 */
+
+.tips-card {
+    border-top: 4px solid var(--travel-success);
+}
+
+.tips-category {
+    margin-bottom: 20px;
+}
+
+.tips-category h3 {
+    color: var(--travel-dark);
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tips-category h3 i {
+    color: var(--travel-success);
+}
+
+.tip-item {
+    padding: 16px;
+    background: var(--travel-light);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border-left: 4px solid transparent;
+}
+
+.tip-item:hover {
+    background: var(--travel-white);
+    transform: translateX(5px);
+    border-left-color: var(--travel-success);
+}
+
+.tip-item.active {
+    background: rgba(0, 206, 201, 0.1);
+    border-left-color: var(--travel-success);
+}
+
+.tip-item h4 {
+    color: var(--travel-dark);
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tip-item h4 i {
+    color: var(--travel-success);
+    font-size: 0.9rem;
+}
+
+.tip-details {
+    padding: 16px;
+    background: var(--travel-white);
+    border-radius: 8px;
+    margin-top: 8px;
+    border: 1px solid var(--travel-light);
+}
+
+/* 檢查清單卡片 */
+
+.checklist-card {
+    border-top: 4px solid var(--travel-warning);
+}
+
+.checklist-category {
+    margin-bottom: 24px;
+}
+
+.checklist-category h3 {
+    color: var(--travel-dark);
+    margin-bottom: 16px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.checklist-category h3 i {
+    color: var(--travel-warning);
+    font-size: 1.2rem;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background: var(--travel-light);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    transition: var(--transition-smooth);
+    border-left: 4px solid transparent;
+}
+
+.checklist-item:hover {
+    background: var(--travel-white);
+    transform: translateX(5px);
+}
+
+.checklist-item.checked {
+    background: rgba(253, 203, 110, 0.1);
+    border-left-color: var(--travel-warning);
+}
+
+.checklist-checkbox {
+    margin-right: 16px;
+}
+
+.checklist-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--travel-gray);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.checklist-checkbox input[type="checkbox"]:checked {
+    background: var(--travel-warning);
+    border-color: var(--travel-warning);
+}
+
+.checklist-item h4 {
+    color: var(--travel-dark);
+    margin: 0;
+    flex: 1;
+    font-size: 1.1rem;
+}
+
+/* 底部導航 - 旅遊主題 */
+
+.bottom-nav {
+    background: var(--travel-white);
+    border-top: 2px solid var(--travel-light);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    height: 80px;
+}
+
+.bottom-nav-item {
+    color: var(--travel-gray);
+    transition: var(--transition-smooth);
+    padding: 12px 0;
+}
+
+.bottom-nav-item:hover {
+    color: var(--travel-primary);
+    transform: translateY(-5px);
+}
+
+.bottom-nav-item.active {
+    color: var(--travel-primary);
+    transform: translateY(-5px);
+}
+
+.bottom-nav-icon {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+    transition: var(--transition-smooth);
+}
+
+.bottom-nav-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 響應式設計 */
+
+@media (max-width: 768px) {
+    .top-bar-content {
+        padding: 0 16px;
+    }
+    
+    .top-bar-title {
+        font-size: 1.2rem;
+    }
+    
+    .main-content {
+        padding: 16px;
+        margin-top: 80px;
+    }
+    
+    .travel-card {
+        margin-bottom: 16px;
+    }
+    
+    .card-header,
+    .card-content {
+        padding: 16px;
+    }
+    
+    .map-container {
+        height: 400px;
+    }
+    
+    .bottom-nav {
+        height: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-bar {
+        height: 60px;
+    }
+    
+    .top-bar-title {
+        font-size: 1.1rem;
+        gap: 8px;
+    }
+    
+    .time-display {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+    
+    .main-content {
+        padding: 12px;
+        margin-top: 70px;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+    
+    .bottom-nav {
+        height: 60px;
+    }
+    
+    .bottom-nav-icon {
+        font-size: 1.4rem;
+    }
+    
+    .bottom-nav-text {
+        font-size: 0.7rem;
+    }
+}
+
+/* 動畫效果 */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.travel-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* 載入動畫 */
+
+.travel-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--travel-light);
+    border-top: 4px solid var(--travel-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 暗色主題 */
+
+@media (prefers-color-scheme: dark) {
+    .travel-card {
+        background: #2d3436;
+        border-color: #636e72;
+    }
+    
+    .bottom-nav {
+        background: #2d3436;
+        border-top-color: #636e72;
+    }
+    
+    .schedule-item,
+    .tip-item,
+    .checklist-item {
+        background: #3c4245;
+    }
+    
+    .schedule-item:hover,
+    .tip-item:hover,
+    .checklist-item:hover {
+        background: #4a5155;
+    }
+}

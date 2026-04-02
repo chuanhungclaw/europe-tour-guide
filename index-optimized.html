@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>歐洲隨身導遊 - 手機版</title>
+    
+    <!-- Font Awesome 圖標 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet 地圖庫 -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- 核心CSS -->
+    <link rel="stylesheet" href="css/mobile-first.css">
+    <link rel="stylesheet" href="css/simple-page-switcher.css">
+    <link rel="stylesheet" href="css/detailed-checklist.css">
+    <link rel="stylesheet" href="css/detailed-tips.css">
+    <link rel="stylesheet" href="css/interactive-map.css">
+    <link rel="stylesheet" href="css/local-backup-map.css">
+    <link rel="stylesheet" href="css/rate-limit-panel.css">
+    
+    <!-- 預加載關鍵資源 -->
+    <link rel="preload" href="js/europe-tour-data.js" as="script">
+    <link rel="preload" href="js/simple-page-switcher.js" as="script">
+    
+    <style>
+        /* 初始載入動畫 */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 載入畫面 -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">載入歐洲隨身導遊...</div>
+    </div>
+    
+    <!-- 頂部狀態欄 -->
+    <header class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-title">
+                <i class="fas fa-plane"></i>
+                歐洲隨身導遊
+            </div>
+            <div class="time-display" id="timeDisplay">
+                載入時間...
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主要內容區域 -->
+    <main class="main-content">
+        <!-- 今日行程 -->
+        <section id="today" class="section active">
+            <div class="section-header">
+                <h1 class="section-title">
+                    <i class="fas fa-calendar-day"></i>
+                    今日行程
+                </h1>
+                <p class="section-subtitle">第1天 - 出發前往歐洲</p>
+            </div>
+            <div class="section-content" id="todayContent">
+                <!-- 今日行程內容將由JS動態生成 -->
+                <div class="loading-content">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    載入今日行程中...
+                </div>
+            </div>
+        </section>
+        
+        <!-- 完整行程 -->
+        <section id="itinerary" class="section">
+            <div class="section-header">
+                <h1 class="section-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    完整行程
+                </h1>
+                <p class="section-subtitle">10天歐洲四國之旅</p>
+            </div>
+            <div class="section-content" id="itineraryContent">
+                <!-- 完整行程內容將由JS動態生成 -->
+                <div class="loading-content">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    載入完整行程中...
+                </div>
+            </div>
+        </section>
+        
+        <!-- 互動地圖 -->
+        <section id="map" class="section">
+            <div class="section-header">
+                <h1 class="section-title">
+                    <i class="fas fa-map-marked-alt"></i>
+                    互動地圖
+                </h1>
+                <p class="section-subtitle">歐洲四國行程路線</p>
+            </div>
+            <div class="section-content">
+                <div class="map-container" id="mapContainer">
+                    <!-- 地圖將由JS動態生成 -->
+                    <div class="map-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        載入地圖中...
+                    </div>
+                </div>
+                <div class="map-controls" id="mapControls">
+                    <!-- 地圖控制按鈕將由JS動態生成 -->
+                </div>
+                <div class="attractions-list" id="attractionsList">
+                    <!-- 景點列表將由JS動態生成 -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- 實用提醒 -->
+        <section id="tips" class="section">
+            <div class="section-header">
+                <h1 class="section-title">
+                    <i class="fas fa-lightbulb"></i>
+                    實用提醒
+                </h1>
+                <p class="section-subtitle">旅行必備知識與技巧</p>
+            </div>
+            <div class="section-content" id="tipsContent">
+                <!-- 實用提醒內容將由JS動態生成 -->
+                <div class="loading-content">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    載入實用提醒中...
+                </div>
+            </div>
+        </section>
+        
+        <!-- 檢查清單 -->
+        <section id="checklist" class="section">
+            <div class="section-header">
+                <h1 class="section-title">
+                    <i class="fas fa-check-square"></i>
+                    檢查清單
+                </h1>
+                <p class="section-subtitle">行前準備完整指南</p>
+            </div>
+            <div class="section-content" id="checklistContent">
+                <!-- 檢查清單內容將由JS動態生成 -->
+                <div class="loading-content">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    載入檢查清單中...
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 底部導航 -->
+    <nav class="bottom-nav">
+        <a href="#today" class="bottom-nav-item active">
+            <div class="bottom-nav-icon">
+                <i class="fas fa-calendar-day"></i>
+            </div>
+            <div class="bottom-nav-text">今日行程</div>
+        </a>
+        <a href="#itinerary" class="bottom-nav-item">
+            <div class="bottom-nav-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="bottom-nav-text">完整行程</div>
+        </a>
+        <a href="#map" class="bottom-nav-item">
+            <div class="bottom-nav-icon">
+                <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <div class="bottom-nav-text">互動地圖</div>
+        </a>
+        <a href="#tips" class="bottom-nav-item">
+            <div class="bottom-nav-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="bottom-nav-text">實用提醒</div>
+        </a>
+        <a href="#checklist" class="bottom-nav-item">
+            <div class="bottom-nav-icon">
+                <i class="fas fa-check-square"></i>
+            </div>
+            <div class="bottom-nav-text">檢查清單</div>
+        </a>
+    </nav>
+    
+    <!-- 核心數據庫 -->
+    <script src="js/europe-tour-data.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/itinerary-database.js"></script>
+    
+    <!-- 核心功能 -->
+    <script src="js/simple-page-switcher.js"></script>
+    <script src="js/time-display-with-labels.js"></script>
+    
+    <!-- 今日行程功能 -->
+    <script src="js/date-auto-switch.js"></script>
+    <script src="js/date-switch-ui.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- 互動地圖功能 -->
+    <script src="js/interactive-europe-map.js"></script>
+    <script src="js/local-backup-map.js"></script>
+    
+    <!-- 實用提醒功能 -->
+    <script src="js/detailed-practical-tips.js"></script>
+    <script src="js/detailed-tips-display.js"></script>
+    
+    <!-- 檢查清單功能 -->
+    <script src="js/detailed-checklist-data.js"></script>
+    <script src="js/detailed-checklist-display.js"></script>
+    
+    <!-- 限流系統 -->
+    <script src="js/smart-rate-limiter.js"></script>
+    <script src="js/execution-frequency-controller.js"></script>
+    <script src="js/rate-limit-panel.js"></script>
+    
+    <!-- 初始化腳本 -->
+    <script>
+        // 等待所有資源載入完成
+        window.addEventListener('load', function() {
+            console.log('📱 所有資源載入完成，初始化網站...');
+            
+            // 隱藏載入畫面
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) {
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }, 500);
+            }
+            
+            // 初始化頁面切換系統
+            if (window.simplePageSwitcher) {
+                window.simplePageSwitcher.init();
+            }
+            
+            // 初始化時間顯示
+            if (window.timeDisplay) {
+                window.timeDisplay.init();
+            }
+            
+            // 初始化限流系統
+            if (window.rateLimitPanel) {
+                window.rateLimitPanel.init();
+            }
+            
+            // 初始化地圖
+            if (window.interactiveEuropeMap) {
+                window.interactiveEuropeMap.init();
+            }
+            
+            // 初始化檢查清單
+            if (window.detailedChecklistDisplay) {
+                window.detailedChecklistDisplay.init();
+            }
+            
+            // 初始化實用提醒
+            if (window.detailedTipsDisplay) {
+                window.detailedTipsDisplay.init();
+            }
+            
+            console.log('✅ 網站初始化完成');
+            
+            // 調試信息
+            setTimeout(() => {
+                console.log('🔍 系統狀態檢查：');
+                console.log('- 頁面切換系統:', window.simplePageSwitcher ? '✅ 已載入' : '❌ 未載入');
+                console.log('- 時間顯示系統:', window.timeDisplay ? '✅ 已載入' : '❌ 未載入');
+                console.log('- 互動地圖系統:', window.interactiveEuropeMap ? '✅ 已載入' : '❌ 未載入');
+                console.log('- 檢查清單系統:', window.detailedChecklistDisplay ? '✅ 已載入' : '❌ 未載入');
+                console.log('- 實用提醒系統:', window.detailedTipsDisplay ? '✅ 已載入' : '❌ 未載入');
+                console.log('- 限流系統:', window.rateLimitPanel ? '✅ 已載入' : '❌ 未載入');
+            }, 1000);
+        });
+        
+        // 錯誤處理
+        window.addEventListener('error', function(e) {
+            console.error('❌ 發生錯誤:', e.message, 'at', e.filename, 'line', e.lineno);
+            
+            // 顯示友好錯誤訊息
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.innerHTML = `
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>發生錯誤，請刷新頁面重試</span>
+            `;
+            errorDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #dc3545;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 10001;
+                animation: slideInDown 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
+            
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.style.animation = 'slideOutUp 0.3s ease';
+                setTimeout(() => {
+                    if (errorDiv.parentNode) {
+                        errorDiv.parentNode.removeChild(errorDiv);
+                    }
+                }, 300);
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

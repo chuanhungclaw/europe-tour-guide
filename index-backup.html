@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗺️ 歐洲隨身導遊 - 奧捷斯匈四國之旅</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile-nav-simple.css" media="(max-width: 768px)">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a192f">
+    <meta name="description" content="歐洲四國隨身導遊 - 智能行程提醒、景點導覽、實用提醒">
+</head>
+<body>
+    <!-- 現代化導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <i class="fas fa-compass"></i>
+                <span>歐洲隨身導遊</span>
+            </a>
+            
+            <!-- 導航菜單 -->
+            <!-- 漢堡菜單按鈕（手機版） -->
+            <button class="hamburger-btn" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-menu">
+                <a href="#today" class="nav-link active">今日行程</a>
+                <a href="#itinerary" class="nav-link">完整行程</a>
+                <a href="#map" class="nav-link">互動地圖</a>
+                <a href="#tips" class="nav-link">實用提醒</a>
+                <a href="#checklist" class="nav-link">檢查清單</a>
+            </div>
+            
+            <!-- 時間顯示 -->
+            <div class="nav-time-display">
+                <div class="time-local">
+                    <i class="fas fa-clock"></i>
+                    <span class="city-name">當地</span>
+                    <span id="nav-local-time">載入中...</span>
+                </div>
+                <div class="time-taipei">
+                    <i class="fas fa-flag"></i>
+                    <span class="city-name">台北</span>
+                    <span id="nav-taipei-time">載入中...</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主內容區 -->
+    <main class="main-content">
+        <!-- 英雄區域 -->
+        <section class="hero-section">
+            <h1 class="hero-title">歐洲四國隨身導遊</h1>
+            <p class="hero-subtitle">奧地利、捷克、斯洛伐克、匈牙利四國10天行程，智能導航、景點攻略、實時提醒，讓你的歐洲之旅更輕鬆</p>
+            <div style="display: flex; gap: 16px; justify-content: center; margin-top: 32px;">
+                <button class="btn btn-primary" onclick="window.scrollTo({top: document.querySelector('#today').offsetTop - 80, behavior: 'smooth'})">
+                    <i class="fas fa-play-circle"></i> 開始行程
+                </button>
+                <button class="btn btn-outline" onclick="window.open('https://maps.google.com', '_blank')">
+                    <i class="fas fa-map-marked-alt"></i> 查看地圖
+                </button>
+            </div>
+        </section>
+
+        <!-- 今日行程 -->
+        <section id="today" class="section">
+            <div class="section-header">
+                <h1><i class="fas fa-calendar-day"></i> 今日行程</h1>
+                <div class="date-display">
+                    <span id="currentDate">2026年4月1日 星期三</span>
+                    <span class="day-counter">第 <span id="dayNumber">1</span> 天 / 10天</span>
+                </div>
+            </div>
+            
+            <div class="today-card">
+                <div class="today-header" style="margin-bottom: 24px;">
+                    <h2 id="todayTitle" style="font-size: 1.5rem; color: var(--text-white); margin-bottom: 8px;">台北 → 上海 (轉機)</h2>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <span style="background: rgba(100, 255, 218, 0.1); color: var(--accent-blue); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">
+                            <i class="fas fa-plane"></i> 飛行日
+                        </span>
+                        <span style="background: rgba(136, 146, 176, 0.1); color: var(--text-light); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">
+                            <i class="fas fa-clock"></i> 集合: 15:30
+                        </span>
+                        <span style="background: rgba(100, 255, 218, 0.1); color: var(--accent-blue); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">
+                            <i class="fas fa-cloud-sun"></i> 12-18°C
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="today-timeline">
+                    <!-- 時間軸項目會由JS動態生成 -->
+                    <div class="timeline-item">
+                        <div class="timeline-time">15:30</div>
+                        <div class="timeline-icon"><i class="fas fa-users"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">機場集合</div>
+                            <div class="timeline-description">桃園國際機場第二航廈集合</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">17:30</div>
+                        <div class="timeline-icon"><i class="fas fa-suitcase-rolling"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">辦理登機</div>
+                            <div class="timeline-description">辦理登機手續及行李托運</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">20:10</div>
+                        <div class="timeline-icon"><i class="fas fa-plane-departure"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">起飛（台灣→上海）</div>
+                            <div class="timeline-description">搭乘班機飛往上海浦東機場</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="today-actions" style="display: flex; gap: 12px; margin-top: 24px;">
+                    <button class="btn btn-outline" id="prevDay">
+                        <i class="fas fa-chevron-left"></i> 前一天
+                    </button>
+                    <button class="btn btn-primary" id="nextDay">
+                        後一天 <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 完整行程 -->
+        <section id="itinerary" class="section">
+            <div class="section-header">
+                <h1><i class="fas fa-route"></i> 完整10天行程</h1>
+                <button class="btn btn-outline" id="exportItinerary">
+                    <i class="fas fa-download"></i> 匯出行程
+                </button>
+            </div>
+            
+            <div class="itinerary-container">
+                <!-- 行程卡片會由JS動態生成 -->
+                <div class="itinerary-card" style="margin-bottom: 16px;">
+                    <h3 style="color: var(--text-white); margin-bottom: 12px;">第1天：出發日</h3>
+                    <p style="color: var(--text-light); margin-bottom: 16px;">台灣 → 上海（轉機）→ 布達佩斯</p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span style="background: rgba(100, 255, 218, 0.1); color: var(--accent-blue); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">飛行日</span>
+                        <span style="background: rgba(136, 146, 176, 0.1); color: var(--text-light); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">轉機</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 功能按鈕區 -->
+        <div style="display: flex; gap: 16px; justify-content: center; margin: 48px 0;">
+            <button class="btn btn-outline" id="offlineToggle">
+                <i class="fas fa-wifi"></i> 離線模式
+            </button>
+            <button class="btn btn-primary" id="syncBtn">
+                <i class="fas fa-sync"></i> 同步行程
+            </button>
+        </div>
+    </main>
+
+    <!-- 載入腳本 -->
+    <script src="js/data.js"></script>
+    <script src="js/enhanced-data.js"></script>
+    <script src="js/practical-tips.js"></script>
+    <script src="js/practical-tips-display.js"></script>
+    <script src="js/attraction-guide.js"></script>
+    <script src="js/attraction-guide-display.js"></script>
+    <script src="js/itinerary-database.js"></script>
+    <script src="js/date-auto-switch.js"></script>
+    <script src="js/date-switch-ui.js"></script>
+    <script src="js/quick-guide-fix.js"></script>
+    <script src="js/nav-time-display.js"></script>
+    <script src="js/version-manager.js"></script>
+    <script src="js/mobile-nav.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/checklist.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/simple-map.js"></script>
+    <script src="js/interactivity-fix.js"></script>
+    
+    <script>
+        // 初始化版本管理
+        if (typeof versionManager !== 'undefined') {
+            versionManager.init();
+        }
+        
+        // 初始化時間顯示
+        if (typeof navTimeDisplay !== 'undefined') {
+            navTimeDisplay.init();
+        }
+    </script>
+</body>
+</html>
